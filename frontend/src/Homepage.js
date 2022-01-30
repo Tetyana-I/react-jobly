@@ -1,8 +1,12 @@
+import "./Homepage.css";
+
 function Homepage() {
     return (
-        <div>
-            <h1>Jobly</h1>
-            <h3>All the jobs in one, convenient place.</h3>
+        <div className="Homepage">
+            <div className="container text-center">
+                <h1 className="mb-4 font-weight-bold">Jobly</h1>
+                <p className="lead">All the jobs in one, convenient place.</p>
+            </div>            
         </div>
     )
 }
