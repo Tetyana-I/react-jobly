@@ -1,0 +1,5 @@
+.SearchForm {
+    margin: 3em 6em;
+    display: flex;
+    flex-direction: row;
+}

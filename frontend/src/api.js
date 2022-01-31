@@ -49,6 +49,14 @@ class JoblyApi {
     let res = await this.request('companies/');
     return res.companies;
   }
+
+  // Get companies by search term
+  static async getCompaniesByName(searchTerm) {
+    let res = await this.request('companies/');
+    let companies = res.companies;
+    let searchResult = companies.filter(company => company.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    return searchResult;
+  }
  
 }
 

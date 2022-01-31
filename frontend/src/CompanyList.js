@@ -2,8 +2,9 @@ import JoblyApi from "./api";
 import { useState, useEffect } from "react";
 import CompanyCard from "./CompanyCard";
 import { Link } from "react-router-dom";
-
-// import { Card, CardBody, CardTitle, CardText, CardImg } from "reactstrap";
+import { Container } from 'reactstrap';
+import "./CompanyList.css";
+import SearchForm from "./SearchForm";
 
 // CompanyCard renders a short company info: name, description and jobs for this company
 // state: 
@@ -29,13 +30,25 @@ function CompanyList() {
         getCompanies();
     }, []);
 
+    async function searchCompanies(searchTerm) {
+        try {
+            setIsLoading(true); 
+            let searchResult = await JoblyApi.getCompaniesByName(searchTerm);
+            console.log("companies inside search function:", searchResult);
+            setCompanies(searchResult);
+            setIsLoading(false); 
+        } catch (e) {
+            console.log(e);
+        }
+        
+    }
     // renders "Loading" message if data loading is not complete
     if (isLoading) {
         return <p>Loading &hellip;</p>;
         }
     return (
-        <div>
-            <h1>Companies:</h1>
+        <Container>
+            <SearchForm searchFunction={searchCompanies}/>
             {companies.map(company => (
                 <Link to={`companies/${company.handle}`}>
                     <CompanyCard 
@@ -45,7 +58,7 @@ function CompanyList() {
                      />
                 </Link>
             ))}                
-        </div>
+        </Container>
     )
 }
 

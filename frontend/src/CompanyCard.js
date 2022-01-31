@@ -1,16 +1,26 @@
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, Row, Col } from 'reactstrap';
+import "./CompanyCard.css";
+
 
 function CompanyCard({ name, description, logoUrl}) {
     return (
-        <div>
-            <Card>
-                <CardImg top width="100%" src={logoUrl} />
-                <CardBody>
-                    <CardTitle>{name}</CardTitle>
-                    <CardText>{description}</CardText>
-                </CardBody>
-            </Card>
-        </div>
+        <Card className="CompanyCard">
+            <Row>
+                <Col>
+                    <CardTitle className="CompanyCard-title">{name}</CardTitle>
+                </Col>
+                <Col>
+                    <CardImg className="CompanyCard-img" src={logoUrl} />
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <CardBody>
+                        <CardText className="CompanyCard-text">{description}</CardText>
+                    </CardBody>
+                </Col>
+            </Row>
+        </Card>
         );
 }
 

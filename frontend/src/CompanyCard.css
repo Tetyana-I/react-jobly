@@ -1,0 +1,24 @@
+.CompanyCard {
+    /* box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2); */
+    margin: 1em 6em;
+    text-align: left;
+    padding: 0.5em;
+}
+
+a {
+    color: black;
+    text-decoration: none;    
+}
+
+a:hover {
+    color: darkblue;
+}
+
+.CompanyCard-title {
+    font-weight: bold;
+    padding-left: 1em;
+}
+
+.CompanyCard-img {
+    width: 3em;
+}
