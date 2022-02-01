@@ -1,0 +1,10 @@
+.CompanyDetails {
+    margin: 1em 6em;
+    text-align: left;
+    padding: 0.5em;
+}
+
+.CompanyDetails-info {
+    padding-left: 6em;
+    margin-top: 2em;
+}

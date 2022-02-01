@@ -49,15 +49,16 @@ function CompanyList() {
     return (
         <Container>
             <SearchForm searchFunction={searchCompanies}/>
-            {companies.map(company => (
-                <Link to={`companies/${company.handle}`}>
+            {companies !== [] ? companies.map(company => (
+                <Link key={company.handle} to={`companies/${company.handle}`}>
                     <CompanyCard 
                         name={company.name}
                         description={company.description}
                         logoUrl={company.logoUrl}
                      />
                 </Link>
-            ))}                
+            )) : <p>Sorry, no results were found!</p>
+            }                
         </Container>
     )
 }

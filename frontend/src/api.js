@@ -44,7 +44,6 @@ class JoblyApi {
   }
 
   // Get all companies
-
   static async getAllCompanies() {
     let res = await this.request('companies/');
     return res.companies;
@@ -53,10 +52,31 @@ class JoblyApi {
   // Get companies by search term
   static async getCompaniesByName(searchTerm) {
     let res = await this.request('companies/');
-    let companies = res.companies;
-    let searchResult = companies.filter(company => company.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    return searchResult;
+    if (searchTerm) {
+      let companies = res.companies;
+      let searchResult = companies.filter(company => company.name.toLowerCase().includes(searchTerm.toLowerCase()));
+      return searchResult;
+    }
+    return res.companies;
   }
+
+  // Get all jobs
+  static async getAllJobs() {
+    let res = await this.request('jobs/');
+    return res.jobs;
+  }
+
+  // Get jobs by search term
+  static async getJobsByTitle(searchTerm) {
+    let res = await this.request('jobs/');
+    if (searchTerm) {
+      let jobs = res.jobs;
+      let searchResult = jobs.filter(job => job.title.toLowerCase().includes(searchTerm.toLowerCase()));
+      return searchResult;
+    }
+    return res.jobs;
+  }
+
  
 }
 

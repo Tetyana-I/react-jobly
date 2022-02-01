@@ -1,6 +1,8 @@
 import JoblyApi from "./api";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import JobCard from "./JobCard";
+import "./CompanyDetails.css";
 
 // import { Card, CardBody, CardTitle, CardText, CardImg } from "reactstrap";
 
@@ -16,7 +18,7 @@ function CompanyDetails() {
     
     // renders once when the component is mounted, sets up local states
     useEffect(() => {
-        async function getCompanyByHandle() {
+        async function getCompanyByHandle(handle) {
         try {
             let res = await JoblyApi.getCompany(handle);
             let company = {
@@ -33,18 +35,28 @@ function CompanyDetails() {
             console.log(e);
         }
         }
-        getCompanyByHandle();
-    }, []);
+        getCompanyByHandle(handle);
+    },[]);
 
     // renders "Loading" message if data loading is not complete
     if (isLoading) {
         return <p>Loading &hellip;</p>;
         }
     return (
-        <div>
-            <h3>{company.name}</h3>
-            <p>{company.description}</p>
-        </div>
+        <div className="CompanyDetails"> 
+            <div className="CompanyDetails-info">
+                <h3>{company.name}</h3>
+                <p>{company.description}</p>            
+            </div>
+            { company.jobs.map(job => (
+                <JobCard
+                    key={job.id}
+                    title={job.title}
+                    salary={job.salary}
+                    equity={job.equity}
+                />
+            ))}
+        </div>            
     )
 }
 
