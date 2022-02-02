@@ -3,12 +3,12 @@ import Homepage from "./Homepage";
 import CompanyList from "./CompanyList";
 import JobList from "./JobList";
 import Profile from "./Profile";
-import Login from "./Login";
-import Signup from "./Signup";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 import CompanyDetails from "./CompanyDetails";
 import NotFound404 from "./NotFound404";
 
-function Routes() {
+function Routes({signup}) {
     return (
         <Switch>
             <Route exact path="/">
@@ -27,10 +27,10 @@ function Routes() {
                 <Profile />
             </Route>
             <Route exact path="/login">
-                <Login />
+                <LoginForm />
             </Route>
             <Route exact path="/signup">
-                <Signup />
+                <SignupForm signup={signup} />
             </Route>
             <Route>
                 <NotFound404 />

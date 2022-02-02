@@ -1,0 +1,32 @@
+.LoginForm {
+    margin-top: 3em;
+    text-align: left;
+    width: 35vw;
+}
+
+.LoginForm-form {
+   background-color: white;
+   border: solid 1px lightgrey;
+
+}
+
+.LoginForm-form label {
+    font-weight: bold;
+    margin-left: 2em;
+}
+
+.LoginForm-form input {
+    margin: 0 auto;
+    width: 30vw;
+}
+
+.LoginForm-username {
+    margin-top: 1em;
+}
+
+.LoginForm button {
+    margin-bottom: 1em;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+}

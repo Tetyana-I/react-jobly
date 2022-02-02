@@ -18,7 +18,7 @@ function CompanyDetails() {
     
     // renders once when the component is mounted, sets up local states
     useEffect(() => {
-        async function getCompanyByHandle(handle) {
+        async function getCompanyByHandle() {
         try {
             let res = await JoblyApi.getCompany(handle);
             let company = {
@@ -35,8 +35,8 @@ function CompanyDetails() {
             console.log(e);
         }
         }
-        getCompanyByHandle(handle);
-    },[]);
+        getCompanyByHandle();
+    },[handle]);
 
     // renders "Loading" message if data loading is not complete
     if (isLoading) {
