@@ -3,31 +3,32 @@ import Homepage from "./Homepage";
 import CompanyList from "./CompanyList";
 import JobList from "./JobList";
 import Profile from "./Profile";
-import LoginForm from "./LoginForm";
-import SignupForm from "./SignupForm";
+import LoginForm from "./auth/LoginForm";
+import SignupForm from "./auth/SignupForm";
 import CompanyDetails from "./CompanyDetails";
 import NotFound404 from "./NotFound404";
+import PrivateRoute from "./PrivateRoutes";
 
-function Routes({signup}) {
+function Routes({signup, login}) {
     return (
         <Switch>
             <Route exact path="/">
                 <Homepage />
             </Route>
-            <Route exact path="/companies">
+            <PrivateRoute exact path="/companies">
                 <CompanyList />
-            </Route>
+            </PrivateRoute>
             <Route exact path="/companies/:handle">
                 <CompanyDetails />
             </Route>
-            <Route exact path="/jobs">
+            <PrivateRoute exact path="/jobs">
                 <JobList />
-            </Route>
-            <Route exact path="/profile">
+            </PrivateRoute>
+            <PrivateRoute exact path="/profile">
                 <Profile />
-            </Route>
+            </PrivateRoute>
             <Route exact path="/login">
-                <LoginForm />
+                <LoginForm login={login}/>
             </Route>
             <Route exact path="/signup">
                 <SignupForm signup={signup} />
