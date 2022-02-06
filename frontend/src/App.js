@@ -5,13 +5,17 @@ import NavBar from "./NavBar";
 import { useState, useEffect } from "react";
 import JoblyApi from "./api"; 
 import UserContext from "./UserContext";
+import useLocalStorage from "./useLocalStorage";
 // import jwt from "jsonwebtoken";
+
+// Key name for storing token in localStorage for "remember me" re-login
+export const TOKEN_STORAGE_ID = "jobly-token";
 
 
 function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
 
   async function signup(userData) {
     try {

@@ -2,7 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import Homepage from "./Homepage";
 import CompanyList from "./CompanyList";
 import JobList from "./JobList";
-import Profile from "./Profile";
+import ProfileForm from "./ProfileForm";
 import LoginForm from "./auth/LoginForm";
 import SignupForm from "./auth/SignupForm";
 import CompanyDetails from "./CompanyDetails";
@@ -25,7 +25,7 @@ function Routes({signup, login}) {
                 <JobList />
             </PrivateRoute>
             <PrivateRoute exact path="/profile">
-                <Profile />
+                <ProfileForm />
             </PrivateRoute>
             <Route exact path="/login">
                 <LoginForm login={login}/>
