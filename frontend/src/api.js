@@ -70,6 +70,7 @@ class JoblyApi {
   // Get all jobs
   static async getAllJobs() {
     let res = await this.request('jobs/');
+    console.log("jobs:", res.jobs);
     return res.jobs;
   }
 
@@ -101,6 +102,11 @@ class JoblyApi {
   static async saveProfile(username, data) {
     let res = await this.request(`users/${username}`, data, "patch");
     return res.user;
+  }
+
+  /** Apply to a job */
+  static async applyToJob(username, id) {
+    await this.request(`users/${username}/jobs/${id}`, {}, "post");
   }
  
 }

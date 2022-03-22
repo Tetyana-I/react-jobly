@@ -16,6 +16,7 @@ function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
+  const [applicationIds, setApplicationIds] = useState(new Set([]));
 
   async function signup(userData) {
     try {
@@ -60,7 +61,7 @@ function App() {
       if (token) {
         try {
           // let { username } = jwt.decode(token);
-          let username = "testusernew";
+          let username = "testuser";
           // put the token on the Api class so it can use it to call the API.
           JoblyApi.token = token;
           let currentUser = await JoblyApi.getCurrentUser(username);
@@ -81,10 +82,27 @@ function App() {
     getCurrentUser();
   }, [token]);
 
+
+  /** Checks if a job has been applied for. */
+  function hasAppliedToJob(id) {
+    return applicationIds.has(id);
+  }
+
+  /** Apply to a job: make API call and update set of application IDs. */
+  function applyToJob(id) {
+    if (hasAppliedToJob(id)) return;
+    JoblyApi.applyToJob(currentUser.username, id);
+    setApplicationIds(new Set([...applicationIds, id]));
+  }
+
+  if (!infoLoaded) {
+    return <p>Loading &hellip;</p>;
+    }
+
   return (
     <div className="App">
       <BrowserRouter>
-      <UserContext.Provider value={{currentUser, setCurrentUser}}>
+      <UserContext.Provider value={{currentUser, setCurrentUser, hasAppliedToJob, applyToJob}}>
         <NavBar logout={logout} />
         <main>
             <Routes signup={signup} login={login}/>
