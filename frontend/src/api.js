@@ -16,7 +16,6 @@ class JoblyApi {
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
-
     //there are multiple ways to pass an authorization token, this is how you pass it in the header.
     //this has been provided to show you another way to pass the token. you are only expected to read this code for this project.
     const url = `${BASE_URL}/${endpoint}`;
@@ -24,7 +23,6 @@ class JoblyApi {
     const params = (method === "get")
         ? data
         : {};
-
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
@@ -70,7 +68,6 @@ class JoblyApi {
   // Get all jobs
   static async getAllJobs() {
     let res = await this.request('jobs/');
-    console.log("jobs:", res.jobs);
     return res.jobs;
   }
 
@@ -114,6 +111,6 @@ class JoblyApi {
 export default JoblyApi;
 
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+// JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+//     "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+//     "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
